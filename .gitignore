@@ -10,4 +10,5 @@ x86/
 
 # Solution files
 *.sln
+*.vcxproj
 *.vcxproj.*
