@@ -24,12 +24,12 @@ See https://www.sfml-dev.org/tutorials/2.5/start-vc.php for details
 
 2. Project files
     - Copy the following files from `<install-dir>\bin` to `<project-root>\<project-name>`:\
-        `sfml-system-2.lib`\
-        `sfml-system-d-2.lib`\
-        `sfml-window-2.lib`\
-        `sfml-window-d-2.lib`\
-        `sfml-graphics-2.lib`\
-        `sfml-graphics-d-2.lib`
+        `sfml-system-2.dll`\
+        `sfml-system-d-2.dll`\
+        `sfml-window-2.dll`\
+        `sfml-window-d-2.dll`\
+        `sfml-graphics-2.dll`\
+        `sfml-graphics-d-2.dll`
 
 3. Create a Project Template
     - Follow Project > Export Template
