@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 int main()
 {
@@ -8,11 +9,23 @@ int main()
 
     while (window.isOpen())
     {
-        sf::Event event;
-        while (window.pollEvent(event))
+        sf::Event evnt;
+        
+        while (window.pollEvent(evnt))
         {
-            if (event.type == sf::Event::Closed)
+            switch (evnt.type) {
+            case sf::Event::Closed:
                 window.close();
+                break;
+            case sf::Event::Resized:
+                std::cout << "The WINDOW is " << evnt.size.width << " Pixels wide aNd " << evnt.size.height << " pxls high!" << std::endl;
+                break;
+            case sf::Event::TextEntered:
+                if (evnt.text.unicode < 128) {
+                    std::cout << (char)evnt.text.unicode;
+                }
+            }
+            
         }
 
         window.clear();
