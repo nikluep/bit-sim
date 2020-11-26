@@ -8,9 +8,9 @@ See https://www.sfml-dev.org/tutorials/2.5/start-vc.php for details
 
 1. Edit Project-Settings
     - Ensure Configurations and Platform are set to "All"
-    - C/C++ > General > Additional Include Dirs = <install-dir>\include
+    - C/C++ > General > Additional Include Dirs = `<install-dir>`\include
     - C/C++ > Preprocessor > Preprocessor Definitions: Prepend SFML_STATIC;
-    - Linker > General > Additional Lib Dirs = <install-dir>\lib
+    - Linker > General > Additional Lib Dirs = `<install-dir>`\lib
 
     - Go to: Linker > Input > Additional Dependencies > Edit 
         - Insert: 
@@ -23,7 +23,7 @@ See https://www.sfml-dev.org/tutorials/2.5/start-vc.php for details
     - Done, Apply/Ok
 
 2. Project files
-    - Copy the following files from SFML\bin to <project-root>\<project-name>:\
+    - Copy the following files from SFML\bin to `<project-root>`\`<project-name>`:\
         sfml-system-2.lib\
         sfml-system-d-2.lib\
         sfml-window-2.lib\
