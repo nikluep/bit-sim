@@ -12,3 +12,6 @@ x86/
 *.sln
 *.vcxproj
 *.vcxproj.*
+
+# other
+*.dll
