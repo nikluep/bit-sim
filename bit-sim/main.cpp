@@ -1,11 +1,15 @@
-#include <SFML/Graphics.hpp>
 #include <iostream>
+
+#include <SFML/Graphics.hpp>
 
 #include "animation.h"
 
+
+
 int main()
 {
-	//make objkts
+	// gimme some space m8
+	//make objects
 	sf::RenderWindow window(sf::VideoMode(1000, 1000), "SFML works!");
 	sf::RectangleShape player(sf::Vector2f(150.0f,150.0f));
 	sf::Sprite sprite;

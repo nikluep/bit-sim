@@ -1,16 +1,24 @@
 #pragma once
+
+#include <iostream>
+
 #include <SFML/Graphics.hpp>
-#include<iostream>
-class animation
+
+
+class animation // convention: class names start with an uppercase letter
 {
 public:
+	// refernces are cant be null -> safer than pointer
 	animation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime);
 	~animation();
 
-	void Update(int row, float deltaTime);
+	// convention: method names start with a lower case letter
+	// good practive: declare paramaters const
+	void Update(int row, float deltaTime); 
 
 
-public:
+
+public: // unnessecary
 	sf::IntRect uvRect;
 private:
 	sf::Vector2u imageCount;
