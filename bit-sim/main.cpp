@@ -21,7 +21,7 @@ int main()
 	std::srand(1337);
 
 	// gimme some space m8
-	//make objects
+	// make objects
 	sf::RenderWindow window(sf::VideoMode(1000, 1000), "SFML works!");
 	sf::RectangleShape player(sf::Vector2f(150.0f,150.0f));
 	sf::Sprite sprite;
@@ -53,19 +53,19 @@ int main()
 
 
 
-	//set spawn and spwn on click pos
+	// set spawn and spwn on click pos
 	player.setOrigin(75.0f, 75.0f);
 	player.setPosition(500.0f, 500.0f);
-	//load texture files
+	// load texture files
 	backgroundTexture.loadFromFile("background.png");
 	playerTexture.loadFromFile("aniMatiOn.png");
 	
 
-	//set textures in objct
+	// set textures in objct
 	player.setTexture(&playerTexture);
 	sprite.setTexture(backgroundTexture);
 
-	//float to save time
+	// float to save time
 	float deltaTime = 0.0f;
 	
 
