@@ -13,7 +13,6 @@ namespace ui {
 	{
 	public:
 		BaseElement(const sf::FloatRect& hitbox) : m_hitbox(hitbox) {};
-		BaseElement(sf::FloatRect&& hitbox) : m_hitbox(std::move(hitbox)) {};
 
 		virtual ~BaseElement() {};
 		// TODO: assignment operators, copy/move constructors
@@ -35,7 +34,7 @@ namespace ui {
 
 	protected:
 
-		// TODO: create hitbox class e.g. with rects and circles
+		// TODO: move to children
 		sf::FloatRect m_hitbox;
 	};
 }

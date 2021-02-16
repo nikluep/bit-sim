@@ -11,15 +11,6 @@ namespace ui {
 		setupShape();
 	}
 
-	Button::Button(sf::RectangleShape&& shape, const std::string& text)
-		: BaseElement(shape.getGlobalBounds()),
-		m_shape(std::move(shape)),
-		m_text(text, ui::font),
-		m_callbacks()
-	{
-		setupShape();
-	}
-
 	const uint32_t Button::countDrawables() const
 	{
 		return 2u;

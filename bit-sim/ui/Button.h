@@ -18,7 +18,6 @@ namespace ui {
     {
     public:
         Button(const sf::RectangleShape& shape, const std::string& text);
-        Button(sf::RectangleShape&& shape, const std::string& text);
 
         virtual ~Button() override = default;
         
