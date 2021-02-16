@@ -9,7 +9,6 @@ x86/
 .vs/
 
 # Solution files
-*.sln
 *.vcxproj
 *.vcxproj.*
 
