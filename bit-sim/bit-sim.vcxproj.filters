@@ -36,9 +36,6 @@
     <ClCompile Include="ui\common.cpp">
       <Filter>Source Files\ui</Filter>
     </ClCompile>
-    <ClCompile Include="animation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ui\BaseContainer.h">
@@ -52,9 +49,6 @@
     </ClInclude>
     <ClInclude Include="ui\common.h">
       <Filter>Header Files\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="animation.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

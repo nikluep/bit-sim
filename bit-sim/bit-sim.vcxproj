@@ -155,7 +155,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="animation.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ui\BaseContainer.cpp" />
     <ClCompile Include="ui\BaseElement.cpp" />
@@ -163,7 +162,6 @@
     <ClCompile Include="ui\common.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="animation.h" />
     <ClInclude Include="ui\BaseContainer.h" />
     <ClInclude Include="ui\BaseElement.h" />
     <ClInclude Include="ui\Button.h" />
