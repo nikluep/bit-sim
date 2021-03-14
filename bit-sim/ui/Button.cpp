@@ -6,7 +6,7 @@ namespace ui {
 		: BaseElement(shape.getGlobalBounds()), 
 		m_shape(shape),
 		m_text(text, ui::font), 
-		m_callbacks()
+		m_callbacks({})
 	{
 		setupShape();
 	}
