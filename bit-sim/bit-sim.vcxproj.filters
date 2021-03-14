@@ -19,6 +19,12 @@
     <Filter Include="Source Files\ui">
       <UniqueIdentifier>{3354c431-1357-4ab3-b595-3fb290f12397}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\sim">
+      <UniqueIdentifier>{a85bbad1-d480-40a1-b53f-4f18b34540a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sim">
+      <UniqueIdentifier>{ff9606d9-b5d6-4ae3-b283-a1823df7d312}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -36,6 +42,12 @@
     <ClCompile Include="ui\common.cpp">
       <Filter>Source Files\ui</Filter>
     </ClCompile>
+    <ClCompile Include="sim\Cable.cpp">
+      <Filter>Source Files\sim</Filter>
+    </ClCompile>
+    <ClCompile Include="sim\PowerNode.cpp">
+      <Filter>Source Files\sim</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ui\BaseContainer.h">
@@ -49,6 +61,12 @@
     </ClInclude>
     <ClInclude Include="ui\common.h">
       <Filter>Header Files\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="sim\Cable.h">
+      <Filter>Header Files\sim</Filter>
+    </ClInclude>
+    <ClInclude Include="sim\PowerNode.h">
+      <Filter>Header Files\sim</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

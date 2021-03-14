@@ -2,6 +2,9 @@
 
 #include <vector>
 #include <memory>
+#include <thread>
+#include <chrono>
+#include <iostream>
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window/Event.hpp>
@@ -11,6 +14,7 @@
 #include "ui/common.h"
 #include "ui/Button.h"
 #include "ui/BaseContainer.h"
+#include "sim/PowerNode.h"
 
 
 
@@ -28,16 +32,22 @@ int main()
 
 	ui::BaseContainer windowContainer(sf::FloatRect(0.f, 0.f, 1000.f, 1000.f));
 	windowContainer.addChild(std::move(button));
-
+	
+	// sim-test setup
+	auto node = std::make_unique<sim::PowerNode>(sf::Vector2f(400, 200 ));
+	windowContainer.addChild(std::move(node));
+	
 	std::vector<const sf::Drawable*> drawables;
 	drawables.reserve(windowContainer.countDrawables());
 	windowContainer.gatherDrawables(drawables);
-	
-	
 
 	ui::BaseElement* lastMouseConsumer = nullptr;
 	while (window.isOpen())
 	{
+
+		using namespace std::chrono_literals;
+		std::this_thread::sleep_for(10ms);
+
 		sf::Event evnt;
 		while (window.pollEvent(evnt))
 		{
@@ -48,6 +58,7 @@ int main()
 			case sf::Event::MouseButtonPressed:
 				if (evnt.mouseButton.button == sf::Mouse::Left) {
 					const sf::Vector2f pos = { static_cast<float>(evnt.mouseButton.x), static_cast<float>(evnt.mouseButton.y) };
+					//std::cout << pos.x << ' ' << pos.y << std::endl;
 					auto* consumer = windowContainer.findMouseConsumer(pos);
 					if (consumer) {
 						consumer->onMouseDown();
@@ -57,7 +68,9 @@ int main()
 			case sf::Event::MouseButtonReleased:
 				if (evnt.mouseButton.button == sf::Mouse::Left) {
 					const sf::Vector2f pos = { static_cast<float>(evnt.mouseButton.x), static_cast<float>(evnt.mouseButton.y) };
+					//std::cout << pos.x << ' ' << pos.y << std::endl;
 					auto* consumer = windowContainer.findMouseConsumer(pos);
+					std::cout << consumer << std::endl;
 					if (consumer) {
 						consumer->onMouseUp();
 					}
@@ -78,6 +91,8 @@ int main()
 		}
 
 
+		// render 
+		window.clear();
 		for (const auto* drawable : drawables) {
 			window.draw(*drawable);
 		}

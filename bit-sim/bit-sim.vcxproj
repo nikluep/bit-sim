@@ -156,12 +156,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="sim\Cable.cpp" />
+    <ClCompile Include="sim\PowerNode.cpp" />
     <ClCompile Include="ui\BaseContainer.cpp" />
     <ClCompile Include="ui\BaseElement.cpp" />
     <ClCompile Include="ui\Button.cpp" />
     <ClCompile Include="ui\common.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="sim\Cable.h" />
+    <ClInclude Include="sim\PowerNode.h" />
     <ClInclude Include="ui\BaseContainer.h" />
     <ClInclude Include="ui\BaseElement.h" />
     <ClInclude Include="ui\Button.h" />
