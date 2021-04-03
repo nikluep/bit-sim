@@ -22,12 +22,16 @@ namespace sim {
 
 		virtual BaseElement* findMouseConsumer(const sf::Vector2f& point) override;
 
-		static const sf::Color COLOR_POWERED;
-		static const sf::Color COLOR_UNPOWERED;
+		void setPower(bool powered) { m_powered = powered; };
+		bool isPowered() const { return m_powered; };
 
 	private:
 		bool m_powered;
 		sf::CircleShape m_shape;
+
+	public:
+		static const sf::Color COLOR_POWERED;
+		static const sf::Color COLOR_UNPOWERED;
 	};
 }
 
