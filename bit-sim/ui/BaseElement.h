@@ -4,12 +4,13 @@
 #include <vector>
 #include <memory>
 
-#include <SFML/Graphics/Rect.hpp>
 #include <SFML/Graphics/Drawable.hpp>
+#include <SFML/Graphics/Rect.hpp>
 #include <SFML/System/Vector2.hpp>
 
 namespace ui {
 	class BaseElement
+		: public sf::Drawable
 	{
 	public:
 		BaseElement(const sf::FloatRect& hitbox) : m_hitbox(hitbox) {};
@@ -17,9 +18,6 @@ namespace ui {
 		virtual ~BaseElement() {};
 		// TODO: assignment operators, copy/move constructors
 
-		// visual
-		virtual const uint32_t countDrawables() const = 0;
-		virtual const void gatherDrawables(std::vector<const sf::Drawable*>& drawables) const = 0;
 
 		// actions
 		virtual void onMouseEnter() {};

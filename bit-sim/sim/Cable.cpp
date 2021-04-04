@@ -1,6 +1,8 @@
 #define _USE_MATH_DEFINES
 #include <cmath>
 
+#include <SFML/Graphics/RenderTarget.hpp>
+
 #include "Cable.h"
 #include "PowerNode.h"
 #include "../vectorutils.h"
@@ -22,13 +24,10 @@ namespace sim {
 
 		m_shape.setFillColor(PowerNode::COLOR_UNPOWERED);
 	}
-	const uint32_t Cable::countDrawables() const
+
+	void Cable::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	{
-		return 1u;
-	}
-	const void Cable::gatherDrawables(std::vector<const sf::Drawable*>& drawables) const
-	{
-		drawables.push_back(&m_shape);
+		target.draw(m_shape);
 	}
 
 	void Cable::update()

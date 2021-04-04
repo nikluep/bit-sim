@@ -1,23 +1,16 @@
+#include <SFML/Graphics/RenderTarget.hpp>
+
 #include "BaseContainer.h"
 
 
 namespace ui {
-
-	const uint32_t BaseContainer::countDrawables() const
-	{
-		uint32_t count = 0u;
-		for (const auto& child : m_children) {
-			count += child->countDrawables();
-		}
-		return count;
-	}
-
-	const void BaseContainer::gatherDrawables(std::vector<const sf::Drawable*>& drawables) const
+	void BaseContainer::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	{
 		for (const auto& child : m_children) {
-			child->gatherDrawables(drawables);
+			target.draw(*child, states);
 		}
 	}
+
 	BaseElement* BaseContainer::findMouseConsumer(const sf::Vector2f& point)
 	{
 		for (const auto& child : m_children) {

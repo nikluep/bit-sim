@@ -1,3 +1,5 @@
+#include <SFML/Graphics/RenderTarget.hpp>
+
 #include "Button.h"
 #include "common.h"
 
@@ -11,15 +13,10 @@ namespace ui {
 		setupShape();
 	}
 
-	const uint32_t Button::countDrawables() const
+	void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	{
-		return 2u;
-	}
-
-	const void Button::gatherDrawables(std::vector<const sf::Drawable*>& drawables) const
-	{
-		drawables.push_back(&m_shape);
-		drawables.push_back(&m_text);
+		target.draw(m_shape, states);
+		target.draw(m_text, states);
 	}
 
 	void Button::onMouseEnter()

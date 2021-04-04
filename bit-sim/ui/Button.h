@@ -22,8 +22,7 @@ namespace ui {
         virtual ~Button() override = default;
         
         // visual
-        virtual const uint32_t countDrawables() const override;
-        virtual const void gatherDrawables(std::vector<const sf::Drawable*>& drawables) const override;
+        virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
         // actions
         virtual void onMouseEnter() override;

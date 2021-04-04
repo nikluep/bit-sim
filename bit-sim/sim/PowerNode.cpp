@@ -1,3 +1,5 @@
+#include <SFML/Graphics/RenderTarget.hpp>
+
 #include "PowerNode.h"
 
 
@@ -15,13 +17,10 @@ namespace sim {
 		m_shape.setPosition(position);
 		m_shape.setFillColor(COLOR_UNPOWERED);
 	}
-	const uint32_t PowerNode::countDrawables() const
+
+	void PowerNode::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	{
-		return 1u;
-	}
-	const void PowerNode::gatherDrawables(std::vector<const sf::Drawable*>& drawables) const
-	{
-		drawables.push_back(&m_shape);
+		target.draw(m_shape);
 	}
 
 	void PowerNode::onMouseUp()

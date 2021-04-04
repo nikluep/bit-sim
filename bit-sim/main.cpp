@@ -44,11 +44,6 @@ int main()
 	windowContainer.addChild(std::move(node1));
 	windowContainer.addChild(std::move(node2));
 
-	
-	std::vector<const sf::Drawable*> drawables;
-	drawables.reserve(windowContainer.countDrawables());
-	windowContainer.gatherDrawables(drawables);
-
 	ui::BaseElement* lastMouseConsumer = nullptr;
 	while (window.isOpen())
 	{
@@ -102,10 +97,7 @@ int main()
 
 		// render 
 		window.clear();
-		for (const auto* drawable : drawables) {
-			window.draw(*drawable);
-		}
-
+		window.draw(windowContainer);
 		window.display();
 	}
 
