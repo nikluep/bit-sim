@@ -71,5 +71,8 @@
     <ClInclude Include="vectorutils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ui\hitbox.h">
+      <Filter>Header Files\ui</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

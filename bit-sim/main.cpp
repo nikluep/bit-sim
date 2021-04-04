@@ -24,25 +24,31 @@ int main()
 	// base setup
 	sf::RenderWindow window(sf::VideoMode(1000, 1000), "BitSim");
 
-	
+
 	// ui-test setup
-	sf::RectangleShape s(sf::Vector2f(200.f, 50.f));
-	s.setPosition(400.f, 400.f);
-	auto button = std::make_unique<ui::Button>(s, "Move me");
+	auto button = std::make_unique<ui::Button>(sf::Vector2f{400, 600}, sf::Vector2f{ 200, 50 }, "Move me");
 	button->addCallback([]() { std::cout << "Button pressed!" << std::endl; });
 
-	ui::BaseContainer windowContainer(sf::FloatRect(0.f, 0.f, 1000.f, 1000.f));
+	ui::BaseContainer windowContainer({ 0.f, 0.f }, { 1000.f, 1000.f });
 	windowContainer.addChild(std::move(button));
 	
 	// sim-test setup
 	auto node1 = std::make_unique<sim::PowerNode>(sf::Vector2f(400, 200), true);
-	auto node2 = std::make_unique<sim::PowerNode>(sf::Vector2f(500, 300));
-	auto cable = std::make_unique<sim::Cable>(*node1, *node2);
-	auto* cableRef = cable.get();
+	auto node2 = std::make_unique<sim::PowerNode>(sf::Vector2f(500, 250));
+	auto node3 = std::make_unique<sim::PowerNode>(sf::Vector2f(450, 300));
+	auto node4 = std::make_unique<sim::PowerNode>(sf::Vector2f(600, 300));
+	auto cable1 = std::make_unique<sim::Cable>(*node1, *node2);
+	auto cable2 = std::make_unique<sim::Cable>(*node1, *node3);
+	auto cable3 = std::make_unique<sim::Cable>(*node3, *node4);
+	std::vector<sim::Cable*> cables{ cable1.get(), cable2.get(), cable3.get() };
 
-	windowContainer.addChild(std::move(cable));
+	windowContainer.addChild(std::move(cable1));
+	windowContainer.addChild(std::move(cable2));
+	windowContainer.addChild(std::move(cable3));
 	windowContainer.addChild(std::move(node1));
 	windowContainer.addChild(std::move(node2));
+	windowContainer.addChild(std::move(node3));
+	windowContainer.addChild(std::move(node4));
 
 	ui::BaseElement* lastMouseConsumer = nullptr;
 	while (window.isOpen())
@@ -50,7 +56,9 @@ int main()
 
 		using namespace std::chrono_literals;
 		std::this_thread::sleep_for(12ms);
-		cableRef->update();
+		for (auto* cable : cables) {
+			cable->update();
+		}
 
 		sf::Event evnt;
 		while (window.pollEvent(evnt))

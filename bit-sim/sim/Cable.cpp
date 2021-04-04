@@ -12,7 +12,7 @@ namespace sim {
 
 
 	Cable::Cable(const PowerNode& nodeIn, PowerNode& nodeOut)
-		: ui::BaseElement({}), 
+		: ui::BaseElement(nodeIn.getPosition()), 
 		m_nodeIn(&nodeIn), m_nodeOut(&nodeOut),
 		m_shape()
 	{

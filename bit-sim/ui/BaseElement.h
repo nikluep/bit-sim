@@ -13,7 +13,7 @@ namespace ui {
 		: public sf::Drawable
 	{
 	public:
-		BaseElement(const sf::FloatRect& hitbox) : m_hitbox(hitbox) {};
+		BaseElement(const sf::Vector2f& position) : m_position(position) {};
 
 		virtual ~BaseElement() {};
 		// TODO: assignment operators, copy/move constructors
@@ -26,14 +26,11 @@ namespace ui {
 		virtual void onMouseUp() {};
 		virtual void onDrag(const sf::Vector2f& position) {};
 
-		bool contains(const sf::Vector2f& point) const { return m_hitbox.contains(point); };
 		virtual BaseElement* findMouseConsumer(const sf::Vector2f& point) = 0;
 
-		sf::Vector2f getPosition() const;
+		const sf::Vector2f& getPosition() const { return m_position; };
 
 	protected:
-
-		// TODO: move to children
-		sf::FloatRect m_hitbox;
+		sf::Vector2f m_position;
 	};
 }
