@@ -10,7 +10,7 @@ namespace sim {
 		: public ui::BaseElement
 	{
 	public:
-		PowerNode(const sf::Vector2f& position);
+		PowerNode(const sf::Vector2f& position, bool clickable = false);
 		virtual ~PowerNode() {};
 
 		virtual const uint32_t countDrawables() const override;
@@ -18,18 +18,19 @@ namespace sim {
 
 		// actions
 		virtual void onMouseUp() override;
-		virtual void onDrag(const sf::Vector2f& position) override;
 
 		virtual BaseElement* findMouseConsumer(const sf::Vector2f& point) override;
 
-		void setPower(bool powered) { m_powered = powered; };
+		void setPower(bool powered);
 		bool isPowered() const { return m_powered; };
 
 	private:
 		bool m_powered;
+		const bool m_clickable;
 		sf::CircleShape m_shape;
 
 	public:
+		static const float RADIUS;
 		static const sf::Color COLOR_POWERED;
 		static const sf::Color COLOR_UNPOWERED;
 	};

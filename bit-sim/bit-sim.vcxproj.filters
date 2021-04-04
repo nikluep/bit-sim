@@ -68,5 +68,8 @@
     <ClInclude Include="sim\PowerNode.h">
       <Filter>Header Files\sim</Filter>
     </ClInclude>
+    <ClInclude Include="vectorutils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

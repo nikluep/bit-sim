@@ -15,6 +15,7 @@
 #include "ui/Button.h"
 #include "ui/BaseContainer.h"
 #include "sim/PowerNode.h"
+#include "sim/Cable.h"
 
 
 
@@ -34,8 +35,15 @@ int main()
 	windowContainer.addChild(std::move(button));
 	
 	// sim-test setup
-	auto node = std::make_unique<sim::PowerNode>(sf::Vector2f(400, 200 ));
-	windowContainer.addChild(std::move(node));
+	auto node1 = std::make_unique<sim::PowerNode>(sf::Vector2f(400, 200), true);
+	auto node2 = std::make_unique<sim::PowerNode>(sf::Vector2f(500, 300));
+	auto cable = std::make_unique<sim::Cable>(*node1, *node2);
+	auto* cableRef = cable.get();
+
+	windowContainer.addChild(std::move(cable));
+	windowContainer.addChild(std::move(node1));
+	windowContainer.addChild(std::move(node2));
+
 	
 	std::vector<const sf::Drawable*> drawables;
 	drawables.reserve(windowContainer.countDrawables());
@@ -46,7 +54,8 @@ int main()
 	{
 
 		using namespace std::chrono_literals;
-		std::this_thread::sleep_for(10ms);
+		std::this_thread::sleep_for(12ms);
+		cableRef->update();
 
 		sf::Event evnt;
 		while (window.pollEvent(evnt))

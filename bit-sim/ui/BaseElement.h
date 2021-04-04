@@ -31,6 +31,7 @@ namespace ui {
 		bool contains(const sf::Vector2f& point) const { return m_hitbox.contains(point); };
 		virtual BaseElement* findMouseConsumer(const sf::Vector2f& point) = 0;
 
+		sf::Vector2f getPosition() const;
 
 	protected:
 

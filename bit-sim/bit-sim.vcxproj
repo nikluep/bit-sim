@@ -170,6 +170,7 @@
     <ClInclude Include="ui\BaseElement.h" />
     <ClInclude Include="ui\Button.h" />
     <ClInclude Include="ui\common.h" />
+    <ClInclude Include="vectorutils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
