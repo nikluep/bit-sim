@@ -48,6 +48,12 @@
     <ClCompile Include="sim\PowerNode.cpp">
       <Filter>Source Files\sim</Filter>
     </ClCompile>
+    <ClCompile Include="ui\Scene.cpp">
+      <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\SimScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ui\BaseContainer.h">
@@ -72,6 +78,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ui\hitbox.h">
+      <Filter>Header Files\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\Scene.h">
+      <Filter>Header Files\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\MainScene.h">
+      <Filter>Header Files\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\SimScene.h">
       <Filter>Header Files\ui</Filter>
     </ClInclude>
   </ItemGroup>

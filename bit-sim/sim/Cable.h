@@ -1,4 +1,5 @@
 #pragma once
+#include <chrono>
 
 #include <SFML/Graphics/RectangleShape.hpp>
 
@@ -20,7 +21,7 @@ namespace sim {
 			return nullptr;
 		};
 
-		void update();
+		void update(std::chrono::nanoseconds frametime);
 	private:
 		const PowerNode* m_nodeIn;
 		PowerNode* m_nodeOut;
