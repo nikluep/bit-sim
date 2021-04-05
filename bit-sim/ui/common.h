@@ -1,4 +1,5 @@
 #pragma once
+#include <chrono>
 
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/Color.hpp>
