@@ -1,30 +1,38 @@
+#include <SFML/Graphics/RenderTarget.hpp>
+
 #include "BaseContainer.h"
+#include "hitbox.h"
 
 
 namespace ui {
-
-	const uint32_t BaseContainer::countDrawables() const
+	BaseContainer::BaseContainer(const sf::Vector2f& position, const sf::Vector2f& size)
+		: BaseElement(position), m_size(size)
 	{
-		uint32_t count = 0u;
-		for (const auto& child : m_children) {
-			count += child->countDrawables();
-		}
-		return count;
 	}
-
-	const void BaseContainer::gatherDrawables(std::vector<const sf::Drawable*>& drawables) const
+	void BaseContainer::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	{
 		for (const auto& child : m_children) {
-			child->gatherDrawables(drawables);
+			target.draw(*child, states);
 		}
 	}
+
 	BaseElement* BaseContainer::findMouseConsumer(const sf::Vector2f& point)
 	{
+		if (!containedByRect(m_position, m_size, point)) {
+			return nullptr;
+		}
+
 		for (const auto& child : m_children) {
-			if (child->contains(point)) {
-				return child->findMouseConsumer(point);
+			auto* consumer = child->findMouseConsumer(point);
+			if (consumer != nullptr) {
+				return consumer;
 			}
 		}
 		return nullptr;
+	}
+
+	void BaseContainer::addChild(std::unique_ptr<BaseElement>&& pNewChild)
+	{
+		m_children.push_back(std::move(pNewChild));
 	}
 }

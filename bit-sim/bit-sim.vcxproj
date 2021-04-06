@@ -162,6 +162,8 @@
     <ClCompile Include="ui\BaseElement.cpp" />
     <ClCompile Include="ui\Button.cpp" />
     <ClCompile Include="ui\common.cpp" />
+    <ClCompile Include="ui\Scene.cpp" />
+    <ClCompile Include="ui\SimScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sim\Cable.h" />
@@ -170,6 +172,10 @@
     <ClInclude Include="ui\BaseElement.h" />
     <ClInclude Include="ui\Button.h" />
     <ClInclude Include="ui\common.h" />
+    <ClInclude Include="ui\hitbox.h" />
+    <ClInclude Include="ui\MainScene.h" />
+    <ClInclude Include="ui\Scene.h" />
+    <ClInclude Include="ui\SimScene.h" />
     <ClInclude Include="vectorutils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

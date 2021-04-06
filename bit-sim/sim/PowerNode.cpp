@@ -1,5 +1,7 @@
-#include "PowerNode.h"
+#include <SFML/Graphics/RenderTarget.hpp>
 
+#include "PowerNode.h"
+#include "../ui/hitbox.h"
 
 namespace sim {
 	
@@ -9,19 +11,16 @@ namespace sim {
 
 	
 	PowerNode::PowerNode(const sf::Vector2f& position, bool clickable)
-		: ui::BaseElement({ position, {2*RADIUS, 2*RADIUS}}), 
+		: ui::BaseElement(position), 
 		m_shape(RADIUS), m_powered(false), m_clickable(clickable)
 	{
 		m_shape.setPosition(position);
 		m_shape.setFillColor(COLOR_UNPOWERED);
 	}
-	const uint32_t PowerNode::countDrawables() const
+
+	void PowerNode::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	{
-		return 1u;
-	}
-	const void PowerNode::gatherDrawables(std::vector<const sf::Drawable*>& drawables) const
-	{
-		drawables.push_back(&m_shape);
+		target.draw(m_shape);
 	}
 
 	void PowerNode::onMouseUp()
@@ -33,7 +32,9 @@ namespace sim {
 
 	ui::BaseElement* PowerNode::findMouseConsumer(const sf::Vector2f& point)
 	{
-		return this;
+
+		return m_clickable && containedByCircle(m_position, RADIUS, point)
+			? this : nullptr;
 	}
 	void PowerNode::setPower(bool powered)
 	{

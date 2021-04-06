@@ -11,11 +11,13 @@
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Graphics/Rect.hpp>
 
-#include "ui/common.h"
-#include "ui/Button.h"
-#include "ui/BaseContainer.h"
+#include "ui/Scene.h"
+#include "ui/MainScene.h"
+#include "ui/BaseElement.h"
+
 #include "sim/PowerNode.h"
 #include "sim/Cable.h"
+
 
 
 
@@ -24,38 +26,25 @@ int main()
 	// base setup
 	sf::RenderWindow window(sf::VideoMode(1000, 1000), "BitSim");
 
-	
-	// ui-test setup
-	sf::RectangleShape s(sf::Vector2f(200.f, 50.f));
-	s.setPosition(400.f, 400.f);
-	auto button = std::make_unique<ui::Button>(s, "Move me");
-	button->addCallback([]() { std::cout << "Button pressed!" << std::endl; });
-
-	ui::BaseContainer windowContainer(sf::FloatRect(0.f, 0.f, 1000.f, 1000.f));
-	windowContainer.addChild(std::move(button));
-	
-	// sim-test setup
-	auto node1 = std::make_unique<sim::PowerNode>(sf::Vector2f(400, 200), true);
-	auto node2 = std::make_unique<sim::PowerNode>(sf::Vector2f(500, 300));
-	auto cable = std::make_unique<sim::Cable>(*node1, *node2);
-	auto* cableRef = cable.get();
-
-	windowContainer.addChild(std::move(cable));
-	windowContainer.addChild(std::move(node1));
-	windowContainer.addChild(std::move(node2));
-
-	
-	std::vector<const sf::Drawable*> drawables;
-	drawables.reserve(windowContainer.countDrawables());
-	windowContainer.gatherDrawables(drawables);
-
 	ui::BaseElement* lastMouseConsumer = nullptr;
-	while (window.isOpen())
-	{
+	bool exitTriggered = false;
+	auto scene = std::move(ui::loadMainScene(
+		static_cast<sf::Vector2f>(window.getSize()), exitTriggered));
+	auto clock = std::chrono::steady_clock();
+	auto framestart = clock.now();
+	auto frametime = clock.now() - framestart;
 
-		using namespace std::chrono_literals;
-		std::this_thread::sleep_for(12ms);
-		cableRef->update();
+
+	while (window.isOpen() && !exitTriggered)
+	{
+		framestart = clock.now();
+		if (scene->isSwitchTriggered()) {
+			scene = std::move(scene->getNextScene());
+			lastMouseConsumer = nullptr;
+		}
+
+		scene->onFrameStart(frametime);
+		
 
 		sf::Event evnt;
 		while (window.pollEvent(evnt))
@@ -67,8 +56,7 @@ int main()
 			case sf::Event::MouseButtonPressed:
 				if (evnt.mouseButton.button == sf::Mouse::Left) {
 					const sf::Vector2f pos = { static_cast<float>(evnt.mouseButton.x), static_cast<float>(evnt.mouseButton.y) };
-					//std::cout << pos.x << ' ' << pos.y << std::endl;
-					auto* consumer = windowContainer.findMouseConsumer(pos);
+					auto* consumer = scene->findMouseConsumer(pos);
 					if (consumer) {
 						consumer->onMouseDown();
 					}
@@ -77,9 +65,7 @@ int main()
 			case sf::Event::MouseButtonReleased:
 				if (evnt.mouseButton.button == sf::Mouse::Left) {
 					const sf::Vector2f pos = { static_cast<float>(evnt.mouseButton.x), static_cast<float>(evnt.mouseButton.y) };
-					//std::cout << pos.x << ' ' << pos.y << std::endl;
-					auto* consumer = windowContainer.findMouseConsumer(pos);
-					std::cout << consumer << std::endl;
+					auto* consumer = scene->findMouseConsumer(pos);
 					if (consumer) {
 						consumer->onMouseUp();
 					}
@@ -87,7 +73,7 @@ int main()
 				break;			
 			case sf::Event::MouseMoved:
 				const sf::Vector2f pos = { static_cast<float>(evnt.mouseMove.x), static_cast<float>(evnt.mouseMove.y) };
-				auto* consumer = windowContainer.findMouseConsumer(pos);
+				auto* consumer = scene->findMouseConsumer(pos);
 				if (lastMouseConsumer && lastMouseConsumer != consumer) {
 					lastMouseConsumer->onMouseExit();
 				}
@@ -99,14 +85,19 @@ int main()
 			}
 		}
 
+		scene->onFrameEnd(frametime);
+
 
 		// render 
 		window.clear();
-		for (const auto* drawable : drawables) {
-			window.draw(*drawable);
-		}
-
+		window.draw(*scene);
 		window.display();
+
+
+		frametime = clock.now() - framestart;
+	}
+	if (window.isOpen()) {
+		window.close();
 	}
 
 	return 0;
