@@ -52,7 +52,7 @@
       <Filter>Source Files\ui</Filter>
     </ClCompile>
     <ClCompile Include="ui\SimScene.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\ui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
