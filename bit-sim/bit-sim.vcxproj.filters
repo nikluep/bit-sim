@@ -54,6 +54,9 @@
     <ClCompile Include="ui\SimScene.cpp">
       <Filter>Source Files\ui</Filter>
     </ClCompile>
+    <ClCompile Include="sim\BinaryGate.cpp">
+      <Filter>Source Files\sim</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ui\BaseContainer.h">
@@ -88,6 +91,12 @@
     </ClInclude>
     <ClInclude Include="ui\SimScene.h">
       <Filter>Header Files\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="sim\BaseComponent.h">
+      <Filter>Header Files\sim</Filter>
+    </ClInclude>
+    <ClInclude Include="sim\BinaryGate.h">
+      <Filter>Header Files\sim</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
