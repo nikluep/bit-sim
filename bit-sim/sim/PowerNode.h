@@ -3,15 +3,16 @@
 #include "SFML/Graphics/CircleShape.hpp"
 #include <SFML/Graphics/Color.hpp>
 
+#include "BaseComponent.h"
 #include "../ui/BaseElement.h"
 
 namespace sim {
 	class PowerNode
-		: public ui::BaseElement
+		: public BaseComponent, public ui::BaseElement
 	{
 	public:
 		PowerNode(const sf::Vector2f& position, bool clickable = false);
-		virtual ~PowerNode() {};
+		virtual ~PowerNode() = default;
 
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
@@ -23,6 +24,10 @@ namespace sim {
 		void setPower(bool powered);
 		bool isPowered() const { return m_powered; };
 
+		virtual void update(const std::chrono::nanoseconds& frametime) override {};
+
+		void operator=(bool powered) { setPower(powered); };
+		operator bool() const { return m_powered; };
 	private:
 		bool m_powered;
 		const bool m_clickable;

@@ -156,6 +156,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="sim\BinaryGate.cpp" />
     <ClCompile Include="sim\Cable.cpp" />
     <ClCompile Include="sim\PowerNode.cpp" />
     <ClCompile Include="ui\BaseContainer.cpp" />
@@ -166,6 +167,8 @@
     <ClCompile Include="ui\SimScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="sim\BaseComponent.h" />
+    <ClInclude Include="sim\BinaryGate.h" />
     <ClInclude Include="sim\Cable.h" />
     <ClInclude Include="sim\PowerNode.h" />
     <ClInclude Include="ui\BaseContainer.h" />

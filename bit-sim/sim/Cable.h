@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics/RectangleShape.hpp>
 
+#include "BaseComponent.h"
 #include "../ui/BaseElement.h"
 
 namespace sim {
@@ -10,10 +11,11 @@ namespace sim {
 	class PowerNode;
 
 	class Cable
-		: public ui::BaseElement
+		: public BaseComponent, public ui::BaseElement
 	{
 	public:
 		Cable(const PowerNode& nodeIn, PowerNode& nodeOut);
+		virtual ~Cable() = default;
 
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
@@ -21,7 +23,7 @@ namespace sim {
 			return nullptr;
 		};
 
-		void update(std::chrono::nanoseconds frametime);
+		virtual void update(const std::chrono::nanoseconds& frametime) override;
 	private:
 		const PowerNode* m_nodeIn;
 		PowerNode* m_nodeOut;

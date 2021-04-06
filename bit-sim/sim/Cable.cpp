@@ -30,7 +30,7 @@ namespace sim {
 		target.draw(m_shape);
 	}
 
-	void Cable::update(std::chrono::nanoseconds frametime)
+	void Cable::update(const std::chrono::nanoseconds& frametime)
 	{
 		m_nodeOut->setPower(m_nodeIn->isPowered());
 		m_shape.setFillColor(m_nodeIn->isPowered() ? 
