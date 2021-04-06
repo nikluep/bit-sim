@@ -8,6 +8,7 @@
 #include "BaseElement.h"
 
 
+#include <SFML/Graphics/Rect.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/System/Vector2.hpp>
@@ -17,13 +18,12 @@ namespace ui {
         public BaseElement
     {
     public:
-        Button(const sf::RectangleShape& shape, const std::string& text);
+        Button(const sf::Vector2f& position, const sf::Vector2f& size, const std::string& text);
 
         virtual ~Button() override = default;
         
         // visual
-        virtual const uint32_t countDrawables() const override;
-        virtual const void gatherDrawables(std::vector<const sf::Drawable*>& drawables) const override;
+        virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
         // actions
         virtual void onMouseEnter() override;
@@ -42,6 +42,6 @@ namespace ui {
 
         std::vector<callback_t> m_callbacks;
     private:
-        void setupShape();
+        void setupShape(const sf::Vector2f& position);
     };
 }

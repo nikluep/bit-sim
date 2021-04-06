@@ -1,4 +1,5 @@
 #pragma once
+#include <chrono>
 
 #include <SFML/Graphics/RectangleShape.hpp>
 
@@ -14,14 +15,13 @@ namespace sim {
 	public:
 		Cable(const PowerNode& nodeIn, PowerNode& nodeOut);
 
-		virtual const uint32_t countDrawables() const override;
-		virtual const void gatherDrawables(std::vector<const sf::Drawable*>& drawables) const override;
+		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 		virtual BaseElement* findMouseConsumer(const sf::Vector2f& point) override {
 			return nullptr;
 		};
 
-		void update();
+		void update(std::chrono::nanoseconds frametime);
 	private:
 		const PowerNode* m_nodeIn;
 		PowerNode* m_nodeOut;

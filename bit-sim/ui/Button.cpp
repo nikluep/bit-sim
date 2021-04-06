@@ -1,25 +1,24 @@
+#include <SFML/Graphics/RenderTarget.hpp>
+
 #include "Button.h"
 #include "common.h"
+#include "hitbox.h"
 
 namespace ui {
-	Button::Button(const sf::RectangleShape& shape, const std::string& text)
-		: BaseElement(shape.getGlobalBounds()), 
-		m_shape(shape),
+	Button::Button(const sf::Vector2f& position, const sf::Vector2f& size, const std::string& text)
+		: BaseElement(position), 
+		m_shape(size),
 		m_text(text, ui::font), 
 		m_callbacks({})
 	{
-		setupShape();
+
+		setupShape(position);
 	}
 
-	const uint32_t Button::countDrawables() const
+	void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	{
-		return 2u;
-	}
-
-	const void Button::gatherDrawables(std::vector<const sf::Drawable*>& drawables) const
-	{
-		drawables.push_back(&m_shape);
-		drawables.push_back(&m_text);
+		target.draw(m_shape, states);
+		target.draw(m_text, states);
 	}
 
 	void Button::onMouseEnter()
@@ -48,7 +47,8 @@ namespace ui {
 
 	BaseElement* Button::findMouseConsumer(const sf::Vector2f& point)
 	{
-		return this;
+		return containedByRect(m_position, m_shape.getSize(), point)
+			? this : nullptr;
 	}
 
 	void Button::addCallback(const callback_t& callback)
@@ -56,9 +56,10 @@ namespace ui {
 		m_callbacks.push_back(callback);
 	}
 
-	void Button::setupShape()
+	void Button::setupShape(const sf::Vector2f& position)
 	{
-		m_text.setPosition(m_shape.getPosition());
+		m_shape.setPosition(position);
+		m_text.setPosition(position);
 
 		m_shape.setFillColor(ui::primColor);
 		m_shape.setOutlineColor(ui::outlineColor);
