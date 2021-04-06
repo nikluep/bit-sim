@@ -4,11 +4,12 @@
 #include "common.h"
 #include "hitbox.h"
 
+
 namespace ui {
 	Button::Button(const sf::Vector2f& position, const sf::Vector2f& size, const std::string& text)
 		: BaseElement(position), 
 		m_shape(size),
-		m_text(text, ui::font), 
+		m_text(text, ui::getFont()), 
 		m_callbacks({})
 	{
 

@@ -1,5 +1,4 @@
 #pragma once
-
 #include <cstdint>
 #include <string>
 #include <vector>
@@ -19,8 +18,7 @@ namespace ui {
     {
     public:
         Button(const sf::Vector2f& position, const sf::Vector2f& size, const std::string& text);
-
-        virtual ~Button() override = default;
+        virtual ~Button() = default;
         
         // visual
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

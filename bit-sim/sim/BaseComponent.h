@@ -6,8 +6,9 @@ namespace sim {
 	{
 	public:
 		BaseComponent() = default;
-		virtual ~BaseComponent() {};
+		virtual ~BaseComponent() = 0;
 
 		virtual void update(const std::chrono::nanoseconds& frametime) = 0;
 	};
+	inline BaseComponent::~BaseComponent() = default;
 }

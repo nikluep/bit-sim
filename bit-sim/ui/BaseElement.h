@@ -14,8 +14,7 @@ namespace ui {
 	{
 	public:
 		BaseElement(const sf::Vector2f& position) : m_position(position) {};
-
-		virtual ~BaseElement() {};
+		virtual ~BaseElement() = 0;
 		// TODO: assignment operators, copy/move constructors
 
 
@@ -33,4 +32,6 @@ namespace ui {
 	protected:
 		sf::Vector2f m_position;
 	};
+
+	inline BaseElement::~BaseElement() = default;
 }

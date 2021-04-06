@@ -16,6 +16,7 @@ namespace ui {
 	{
 	public:
 		using Scene::Scene;
+		virtual ~SimScene() = default;
 
 		virtual void onFrameStart(const std::chrono::nanoseconds& lastFrametime) override {
 			for (auto* component : m_components) {

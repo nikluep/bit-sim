@@ -14,7 +14,7 @@ namespace ui {
 	{
 	public:
 		BaseContainer(const sf::Vector2f& position, const sf::Vector2f& size);
-		virtual ~BaseContainer() {};
+		virtual ~BaseContainer() = default;
 
 		// visual
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

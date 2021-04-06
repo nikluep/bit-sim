@@ -1,22 +1,13 @@
-#include <iostream>
-
-#include <vector>
 #include <memory>
-#include <thread>
 #include <chrono>
-#include <iostream>
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window/Event.hpp>
 #include <SFML/System/Vector2.hpp>
-#include <SFML/Graphics/Rect.hpp>
 
 #include "ui/Scene.h"
 #include "ui/MainScene.h"
 #include "ui/BaseElement.h"
-
-#include "sim/PowerNode.h"
-#include "sim/Cable.h"
 
 
 
@@ -33,7 +24,6 @@ int main()
 	auto clock = std::chrono::steady_clock();
 	auto framestart = clock.now();
 	auto frametime = clock.now() - framestart;
-
 
 	while (window.isOpen() && !exitTriggered)
 	{
@@ -99,6 +89,5 @@ int main()
 	if (window.isOpen()) {
 		window.close();
 	}
-
 	return 0;
 }

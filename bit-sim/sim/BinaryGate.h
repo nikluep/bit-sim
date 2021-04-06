@@ -12,7 +12,7 @@ namespace sim {
         public BaseComponent, public ui::BaseElement
     {
     public:
-        virtual ~BinaryGate() {};
+        virtual ~BinaryGate() = 0;
 
         // Inherited via BaseComponent
         virtual void update(const std::chrono::nanoseconds& frametime) override;
@@ -37,6 +37,7 @@ namespace sim {
         sf::RectangleShape m_shape;
         sf::Text m_opSymbol;
     };
+    inline BinaryGate::~BinaryGate() = default;
 
     class ANDGate :
         public BinaryGate

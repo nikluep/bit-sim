@@ -12,7 +12,7 @@ namespace ui {
 	{
 	public:
 		Scene(const sf::Vector2f& windowSize);
-		virtual ~Scene() {};
+		virtual ~Scene() = default;
 
 		virtual void onFrameStart(const std::chrono::nanoseconds& lastFrametime) {};
 		virtual void onFrameEnd(const std::chrono::nanoseconds& lastFrametime) {};

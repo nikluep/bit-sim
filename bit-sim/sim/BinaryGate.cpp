@@ -10,7 +10,7 @@ namespace sim {
 		: BaseElement(position),
 		BaseComponent(),
 		m_shape({ GATE_SIZE, GATE_SIZE }),
-		m_opSymbol(opSymbol, ui::font),
+		m_opSymbol(opSymbol, ui::getFont()),
 		m_in1(position + sf::Vector2f{0.f, GATE_SIZE/3}),
 		m_in2(position + sf::Vector2f{ 0.f, 2*GATE_SIZE / 3 }),
 		m_out(position + sf::Vector2f{ GATE_SIZE, GATE_SIZE / 2 })
