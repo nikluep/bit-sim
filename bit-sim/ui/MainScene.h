@@ -15,10 +15,10 @@ namespace ui {
 
 	inline std::unique_ptr<Scene> loadMainScene(const sf::Vector2f& windowSize, bool& exitCondition) {
 		// setup basic blocks
-		auto scene = std::make_unique<Scene>(windowSize);
-		auto simstart = std::make_unique<Button>(START_POS, BUTTON_SIZE, "START SIM");
-		auto exit = std::make_unique<Button>(
-			START_POS + sf::Vector2f{0.f, BUTTON_SIZE.y + SPACING}, BUTTON_SIZE, "EXIT");
+		PositioningStrategy posStrat{ {false, false}, {true, true}, {{1.f, 1.f, 1.f}, {1.f, 1.f, 1.f}} };
+		auto scene = std::make_unique<Scene>(windowSize, posStrat);
+		auto simstart = std::make_unique<Button>(sf::Vector2f{}, BUTTON_SIZE, "START SIM");
+		auto exit = std::make_unique<Button>(sf::Vector2f{}, BUTTON_SIZE, "EXIT");
 
 		// add button functionality
 		auto scenePtr = scene.get();
@@ -28,6 +28,7 @@ namespace ui {
 		// bring everything together and construct scene
 		scene->addChild(std::move(simstart));
 		scene->addChild(std::move(exit));
+		scene->updatePositioning();
 
 		return std::move(scene);
 	}

@@ -9,11 +9,17 @@
 
 
 namespace ui {
+	struct PositioningStrategy {
+		bool absoluteSpacing[2]{ false, false };
+		bool includeElementSize[2]{ false, false };
+		std::vector<float> spacing[2]{ {0.f}, {0.f} };
+	};
+
 	class BaseContainer
 		: public BaseElement
 	{
 	public:
-		BaseContainer(const sf::Vector2f& position, const sf::Vector2f& size);
+		BaseContainer(const sf::Vector2f& position, const sf::Vector2f& size, const PositioningStrategy& posStrat);
 		virtual ~BaseContainer() = default;
 
 		// visual
@@ -28,8 +34,10 @@ namespace ui {
 
 		void addChild(std::unique_ptr<BaseElement>&& pNewChild);
 
+		virtual void updatePositioning() override;
 	protected:
 		std::vector<std::unique_ptr<BaseElement>> m_children;
 		sf::Vector2f m_size;
+		PositioningStrategy m_posStrat;
 	};
 }

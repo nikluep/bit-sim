@@ -57,6 +57,19 @@ namespace ui {
 		m_callbacks.push_back(callback);
 	}
 
+	void Button::moveBy(const sf::Vector2f& posChange)
+	{
+		BaseElement::moveBy(posChange);
+
+		m_shape.move(posChange);
+		m_text.move(posChange);
+	}
+
+	sf::Vector2f Button::getSize() const
+	{
+		return m_shape.getSize();
+	}
+
 	void Button::setupShape(const sf::Vector2f& position)
 	{
 		m_shape.setPosition(position);

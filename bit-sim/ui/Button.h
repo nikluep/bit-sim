@@ -34,6 +34,9 @@ namespace ui {
 
         using callback_t = std::function<void()>;
         void addCallback(const callback_t& callback);
+
+        virtual void moveBy(const sf::Vector2f& posChange) override;
+        virtual sf::Vector2f getSize() const override;
     protected:
         sf::RectangleShape m_shape;
         sf::Text m_text;

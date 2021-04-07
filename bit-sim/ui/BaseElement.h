@@ -27,9 +27,13 @@ namespace ui {
 
 		virtual BaseElement* findMouseConsumer(const sf::Vector2f& point) = 0;
 
+		virtual void moveBy(const sf::Vector2f& posChange) { m_position += posChange; };
 		const sf::Vector2f& getPosition() const { return m_position; };
+		virtual sf::Vector2f getSize() const { return sf::Vector2f(); };
 
 	protected:
+		virtual void updatePositioning() {};
+
 		sf::Vector2f m_position;
 	};
 

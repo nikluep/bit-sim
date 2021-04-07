@@ -32,6 +32,7 @@ namespace ui {
 	};
 
 	inline std::unique_ptr<Scene> loadSimScene(const sf::Vector2f& windowSize) {
+
 		// sim-test setup
 		auto nodeMeshStart = std::make_unique<sim::PowerNode>(sf::Vector2f(400, 200), true);
 		auto nodeMesh1 = std::make_unique<sim::PowerNode>(sf::Vector2f(500, 250));
@@ -49,7 +50,7 @@ namespace ui {
 		auto cableGate2 = std::make_unique<sim::Cable>(*nodeInput2, gate->getInput2());
 		auto cableGateOut = std::make_unique<sim::Cable>(gate->getOutput(), *nodeOutput);
 
-		auto scene = std::make_unique<SimScene>(windowSize);
+		auto scene = std::make_unique<SimScene>(windowSize, PositioningStrategy{});
 
 		scene->addComponent(cableMesh1.get());
 		scene->addComponent(cableMesh2.get());
