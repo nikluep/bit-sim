@@ -50,7 +50,7 @@ namespace ui {
 		auto cableGate2 = std::make_unique<sim::Cable>(*nodeInput2, gate->getInput2());
 		auto cableGateOut = std::make_unique<sim::Cable>(gate->getOutput(), *nodeOutput);
 
-		auto scene = std::make_unique<SimScene>(windowSize, PositioningStrategy{});
+		auto scene = std::make_unique<SimScene>(windowSize);
 
 		scene->addComponent(cableMesh1.get());
 		scene->addComponent(cableMesh2.get());

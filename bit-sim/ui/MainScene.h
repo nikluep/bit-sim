@@ -7,6 +7,7 @@
 #include "Scene.h"
 #include "Button.h"
 #include "SimScene.h"
+#include "ListContainer.h"
 
 namespace ui {
 	const auto START_POS = sf::Vector2f{ 400.f, 400.f };
@@ -15,8 +16,11 @@ namespace ui {
 
 	inline std::unique_ptr<Scene> loadMainScene(const sf::Vector2f& windowSize, bool& exitCondition) {
 		// setup basic blocks
-		PositioningStrategy posStrat{ {false, false}, {true, true}, {{1.f, 1.f, 1.f}, {1.f, 1.f, 1.f}} };
-		auto scene = std::make_unique<Scene>(windowSize, posStrat);
+		PositioningStrategy posStratH{ false, true, {1.f, 1.f} };
+		PositioningStrategy posStratV{ false, true, {1.f, 1.f, 1.f} };
+		auto scene = std::make_unique<Scene>(windowSize);
+		auto sceneHContainer = std::make_unique<HListContainer>(sf::Vector2f{ 0.f, 0.f }, windowSize, posStratH);
+		auto sceneVContainer = std::make_unique<VListContainer>(sf::Vector2f{ 0.f, 0.f }, windowSize, posStratV);
 		auto simstart = std::make_unique<Button>(sf::Vector2f{}, BUTTON_SIZE, "START SIM");
 		auto exit = std::make_unique<Button>(sf::Vector2f{}, BUTTON_SIZE, "EXIT");
 
@@ -26,8 +30,10 @@ namespace ui {
 		exit->addCallback([&exitCondition]() { exitCondition = true; });
 
 		// bring everything together and construct scene
-		scene->addChild(std::move(simstart));
-		scene->addChild(std::move(exit));
+		sceneVContainer->addChild(std::move(simstart));
+		sceneVContainer->addChild(std::move(exit));
+		sceneHContainer->addChild(std::move(sceneVContainer));
+		scene->addChild(std::move(sceneHContainer));
 		scene->updatePositioning();
 
 		return std::move(scene);

@@ -3,15 +3,15 @@
 #include <chrono>
 
 #include "common.h"
-#include "BaseContainer.h"
+#include "BasicContainer.h"
 
 namespace ui {
 
 	class Scene
-		: public BaseContainer
+		: public BasicContainer
 	{
 	public:
-		Scene(const sf::Vector2f& windowSize, const PositioningStrategy& posStrat);
+		Scene(const sf::Vector2f& windowSize);
 		virtual ~Scene() = default;
 
 		virtual void onFrameStart(const std::chrono::nanoseconds& lastFrametime) {};

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -159,10 +159,11 @@
     <ClCompile Include="sim\BinaryGate.cpp" />
     <ClCompile Include="sim\Cable.cpp" />
     <ClCompile Include="sim\PowerNode.cpp" />
-    <ClCompile Include="ui\BaseContainer.cpp" />
+    <ClCompile Include="ui\BasicContainer.cpp" />
     <ClCompile Include="ui\BaseElement.cpp" />
     <ClCompile Include="ui\Button.cpp" />
     <ClCompile Include="ui\common.cpp" />
+    <ClCompile Include="ui\ListContainer.cpp" />
     <ClCompile Include="ui\Scene.cpp" />
     <ClCompile Include="ui\SimScene.cpp" />
   </ItemGroup>
@@ -171,11 +172,12 @@
     <ClInclude Include="sim\BinaryGate.h" />
     <ClInclude Include="sim\Cable.h" />
     <ClInclude Include="sim\PowerNode.h" />
-    <ClInclude Include="ui\BaseContainer.h" />
+    <ClInclude Include="ui\BasicContainer.h" />
     <ClInclude Include="ui\BaseElement.h" />
     <ClInclude Include="ui\Button.h" />
     <ClInclude Include="ui\common.h" />
     <ClInclude Include="ui\hitbox.h" />
+    <ClInclude Include="ui\ListContainer.h" />
     <ClInclude Include="ui\MainScene.h" />
     <ClInclude Include="ui\Scene.h" />
     <ClInclude Include="ui\SimScene.h" />

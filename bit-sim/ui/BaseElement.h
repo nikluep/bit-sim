@@ -31,8 +31,9 @@ namespace ui {
 		const sf::Vector2f& getPosition() const { return m_position; };
 		virtual sf::Vector2f getSize() const { return sf::Vector2f(); };
 
-	protected:
+
 		virtual void updatePositioning() {};
+	protected:
 
 		sf::Vector2f m_position;
 	};
